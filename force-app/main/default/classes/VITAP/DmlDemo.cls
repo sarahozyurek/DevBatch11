@@ -18,9 +18,9 @@ public  class DmlDemo {
     public static void dmlupdateDemo_1(){
 
         Account acc = new Account();
-        acc.name = 'Tom';
+        acc.name = 'Torm';
         insert acc ;
-        acc.name = 'Jeerry';
+        acc.name = 'Jererry';
         update acc;
         system.debug(acc);
     }
