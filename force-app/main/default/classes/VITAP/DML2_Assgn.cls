@@ -16,7 +16,7 @@ public   class DML2_Assgn {
 
     public static void updating_dml(){
         account acc= new account();
-        acc.name = 'Account 1 ';
+        acc.name = 'Accountt 1 ';
         insert acc;
         acc.name = 'Updated Account';
         update acc;
