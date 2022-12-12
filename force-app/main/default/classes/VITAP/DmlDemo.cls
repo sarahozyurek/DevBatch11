@@ -20,8 +20,9 @@ public  class DmlDemo {
         Account acc = new Account();
         acc.name = 'Torm';
         insert acc ;
-        acc.name = 'Jererry';
+        acc.name = 'Jerry';
         update acc;
         system.debug(acc);
     }
+
 }

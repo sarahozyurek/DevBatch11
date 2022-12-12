@@ -21,4 +21,22 @@ public   class DML2_Assgn {
         acc.name = 'Updated Account';
         update acc;
     }
+
+    public static void createBulkContacts() {
+        Contact c1 =  new  Contact(FirstName = 'Mark', LastName = 'Ruffalo');
+        insert c1;
+        Contact c2 = new Contact(FirstName = 'Mark', LastName = 'Ruffalo');
+        insert c2;
+        Contact c3 = new Contact(FirstName = 'Chris', LastName = 'Hemsworth');
+        insert c3;
+        Contact c4 = new Contact(FirstName = 'Scarlett', LastName = 'Johansson');
+        insert c4;
+        Contact c5 = new Contact(FirstName = 'Scarlett', LastName = 'Johansson');
+        insert c5;
+    }
+
+    public static List<Contact> searchForContacts(string lname){
+        List<Contact> listContact = [SELECT id, name, LastName FROM Contact WHERE Lastname = :lname ];
+        return listContact;
+    }
 }
