@@ -1,6 +1,7 @@
 trigger AccountTriggerIS on Account (before insert, before update, after insert, after update) {
     List<account> accTriggerOld = trigger.old; //list of old records
     List<account> accTriggerNew = trigger.new; //list of new records
+    
     map<id, account> accTriggerOldMap = trigger.oldMap; //map of old records, id is key
     map<id, account> accTriggerNewMap = trigger.newMap; //map of new records, id is key
 
