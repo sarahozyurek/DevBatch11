@@ -1,51 +1,70 @@
 trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
     
     if (Trigger.isBefore) {
-        for (account eachAcc : Trigger.new) {
-            if (Trigger.isInsert && eachAcc.Active__c == 'Yes') {
-                //just update field
-                eachAcc.Description = 'Account is now active. Enjoy buddy!!';
-            }
-            //if account is updated.
-                //check if active field is changed from not yes to yes
-                //then update description
-            if (Trigger.isUpdate) {
-                //get old account using OldMAP
-                Account oldAccount = Trigger.OldMap.get(eachAcc.Id);
-                //get new account using newMap
-                Account newAccount = Trigger.NewMap.get(eachAcc.Id);
-                //oldAccount.Active__c != newAccount.Active__c
-                if (eachAcc.Active__c == 'Yes' &&
-                   oldAccount.Active__c != newAccount.Active__c ) {
-                    eachAcc.Description = 'Account is NOW ACTIVE. You must Enjoy!';
-                }
-            }
-        }
+        AccountTriggerHandler.updateDescription(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+    }
+    if (Trigger.isAfter && Trigger.isUpdate) {
+        //HERE we call handler method to update all contacts VIP field
+        AccountTriggerHandler.updateVIPforContacts(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
     }
 
 
-    // List<account> accTriggerOld = trigger.old; //list of old records
-    // List<account> accTriggerNew = trigger.new; //list of new records
-    
-    // map<id, account> accTriggerOldMap = trigger.oldMap; //map of old records, id is key
-    // map<id, account> accTriggerNewMap = trigger.newMap; //map of new records, id is key
 
+    /*
+    if (trigger.isAfter && trigger.isUpdate) {
+        system.debug('after update trigger');
 
-    // if (Trigger.isAfter && Trigger.isUpdate) {
-
-    //     //old account name and new account name using ONE for loop.
+        map<id, account> accTriggerOldMap = trigger.oldMap; //map of old records, id is key
+        map<id, account> accTriggerNewMap = trigger.newMap; //map of new records, id is key
         
-    //     //get set of id using map.
-    //     set<id> accountIds = accTriggerNewMap.keySet();
-    //     for (Id eachId : accountIds) {
-    //         //get NEW account value from NewMap - id is same in newmap and oldmap
-    //         account newAcc = accTriggerNewMap.get(eachId);
-    //         system.debug('NEW Acc Name is ' +  newacc.Name);
-    //         //get OLD account value from OldMap
-    //         account oldAcc = accTriggerOldMap.get(eachId);
-    //         system.debug('Old Acc Name is ' +  oldacc.Name);
-    //     }
-    // }
+        set<id> accountIds = accTriggerNewMap.keySet(); //all the IDS.
+        set<id> accountIdsOld = accTriggerOldMap.keySet();//all ids of oldMap
+        system.debug('accountids -> ' + accountIds);
+        system.debug('accountIdsOld -> ' + accountIdsOld);
+ 
+        integer countWebsite = 0;
+
+        for (Id eachId : accountIds) {
+            //get NEW account value from NewMap - id is same in newmap and oldmap
+            account newAcc = accTriggerNewMap.get(eachId);
+            string newWebsite = newAcc.Website;
+            system.debug('** newWebsite -> ' + newWebsite);
+            //get OLD account value from OldMap
+            account oldAcc = accTriggerOldMap.get(eachId);
+            string oldWebsite = oldAcc.Website;
+            system.debug('** oldWebsite -> ' + oldWebsite);
+
+            if (newWebsite != oldWebsite) {
+                system.debug('Account is ' + newAcc.Name + ', website changed to ' + newwebsite);
+                countwebsite++;
+            }
+           
+        }
+        system.debug('website updated for # of accounts => ' + countwebsite);
+    }*/
+
+    
+    /*List<account> accTriggerOld = trigger.old; //list of old records
+    List<account> accTriggerNew = trigger.new; //list of new records
+    map<id, account> accTriggerOldMap = trigger.oldMap; //map of old records, id is key
+    map<id, account> accTriggerNewMap = trigger.newMap; //map of new records, id is key
+
+
+    if (Trigger.isAfter && Trigger.isUpdate) {
+
+        //old account name and new account name using ONE for loop.
+        
+        //get set of id using map.
+        set<id> accountIds = accTriggerNewMap.keySet();
+        for (Id eachId : accountIds) {
+            //get NEW account value from NewMap - id is same in newmap and oldmap
+            account newAcc = accTriggerNewMap.get(eachId);
+            system.debug('NEW Acc Name is ' +  newacc.Name);
+            //get OLD account value from OldMap
+            account oldAcc = accTriggerOldMap.get(eachId);
+            system.debug('Old Acc Name is ' +  oldacc.Name);
+        }
+    }*/
     /*
     //what elements we have in these maps.
     if (Trigger.isBefore && Trigger.isInsert) {
