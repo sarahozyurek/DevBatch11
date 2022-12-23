@@ -15,14 +15,25 @@ public  class DmlDemo {
         System.debug('NSERTED' +spNew);
     }
 
+
+    public static void dmlInsertDemo_4() {
+        account acc = [select id, name from account where name = 'SoftInnovas Inc.' limit 1];
+
+        //create contact
+        contact cnt = new contact();
+        cnt.LastName = 'Biden';
+        cnt.AccountId = acc.id;
+        insert cnt;
+        system.debug('contact record: ' + cnt);
+    }
+
     public static void dmlupdateDemo_1(){
 
         Account acc = new Account();
-        acc.name = 'Torm';
+        acc.name = 'Tom';
         insert acc ;
         acc.name = 'Jerry';
         update acc;
         system.debug(acc);
     }
-
 }
