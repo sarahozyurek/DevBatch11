@@ -1,0 +1,1 @@
+BoredCallOut2.getBored();

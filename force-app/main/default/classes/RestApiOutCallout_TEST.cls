@@ -62,7 +62,7 @@ public with sharing class RestApiOutCallout_TEST {
 
     
     public class GetUserCallOutMockResponse implements 
-     {
+     
         //implement respond interface method
         public HttpResponse respond(HttpRequest request){
             // Create a fake Response
