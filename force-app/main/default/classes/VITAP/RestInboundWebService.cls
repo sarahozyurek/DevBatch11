@@ -186,6 +186,84 @@ global static Case updatecaseFields(){
    update existingRec[0];
    return existingRec[0];
 }
+
+/**
+     * This method will be used to perform UPSERT(Insert/Update) case record by parsing all required parameters from Rest Request sent by External System
+     * Incase of Upsert, if Salesforce Id is provided then it is an Update scenario. If not, it is an Insert scenario
+     * Endpoint - https://abinash-panigrahi-0113-dev-ed.my.salesforce.com/services/apexrest/InboundCaseManager/
+     * Http Method - PUT
+     * Request Body - { "id" : "xxx", "subject" : "xxx", "description" : "xxx", "status" : "xxx", "priority" : "xxx", "origin" : "xxx" }
+     * Return meaningful JSON response based on Success/Failure
+     * Response Body - { 'id' : 'xxx', 'status' : 'Success/Failure', 'errorMessage' : 'xxx' }
+     * if method are not added then it means we have to do deserialisation at our own terms
+     */
+/**
+     * This method will be used to perform UPSERT(Insert/Update) case record by parsing all required parameters from Rest Request sent by External System
+     * Incase of Upsert, if Salesforce Id is provided then it is an Update scenario. If not, it is an Insert scenario
+     * Endpoint - https://abinash-panigrahi-0113-dev-ed.my.salesforce.com/services/apexrest/InboundCaseManager/
+     * Http Method - PUT
+     * Request Body - { "id" : "xxx", "subject" : "xxx", "description" : "xxx", "status" : "xxx", "priority" : "xxx", "origin" : "xxx" }
+     * Return meaningful JSON response based on Success/Failure
+     * Response Body - { 'id' : 'xxx', 'status' : 'Success/Failure', 'errorMessage' : 'xxx' }
+     * if Method oparameters are not added then it means We have to do Deserialisation at our own terms
+     */
+    @HttpPut
+    global static void upsertCase(){
+        // Get Incoming Inbound REST API Request
+        RestRequest request = RestContext.Request;
+        // Extract Information/Data from Request Body by deserailising JSON
+        String requestBody = request.requestBody.toString();
+        // Use deserialize Strict when dfealing with Wrapper class
+        // Use deserilaize Untyped when dealing with Map<>String
+        PutRequestWrapper requestContent = (PutRequestWrapper) JSON.deserializeStrict(requestBody, PutRequestWrapper.class);
+
+        // Prepare Case Object record
+        case newRec = new Case();
+        newRec.Status = requestContent.status;
+        newRec.Subject = requestContent.subject;
+        newRec.Description = requestContent.description;
+        newRec.Origin = requestContent.origin;
+        newRec.Priority = requestContent.priority;
+        if(requestContent.id != null && requestContent.id != ''){
+            newRec.Id = requestContent.id;
+        }
+
+        //Prepare Response Content
+        RestResponse response = RestContext.Response;
+        response.addHeader('Content-Type', 'application/json');
+        PostResponseWrapper responseContent = new PostResponseWrapper();
+
+        try {
+            // Upsert Operation
+            upsert newRec;
+
+            // Success Response
+            response.statusCode = 201;
+            responseContent.status = 'Success';
+            responseContent.id = newRec.Id;
+            responseContent.errorMessage = '';
+        } catch (Exception ex) {
+            // Error Response
+            response.statusCode = 404;
+            responseContent.status = 'Failure';
+            responseContent.id = '';
+            responseContent.errorMessage = ex.getMessage();
+        }
+
+        // Prepare Response Body in JSOn format
+        String responseJSON = JSON.serialize(responseContent);
+        response.responseBody = Blob.valueOf(responseJSON);
+    }
+
+    // Wrapper Class for Put Request Body Deseariliasation
+    public class PutRequestWrapper {
+        public String id;
+        public String subject;
+        public STring description;
+        public String priority;
+        public STring origin;
+        public STring status;
+    }
     // Wrapper Class for Response Building
     public class PostResponseWrapper {
         public String id;
