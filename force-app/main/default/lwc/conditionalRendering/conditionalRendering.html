@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title = "Conditional Rendering1">
+        <div class = "slds-var-m-around_medium">
+            <template lwc:if = {showContent}>
+                I am getting displayed because the value of showContent is TRUE
+            </template>
+            <template lwc:elseif = {showSecondContent}>
+                Second Content
+            </template>
+            <template lwc:else>
+                I am getting displayed because the value of showContent is FALSE
+            </template>
+        </div>
+    </lightning-card>
+</template>

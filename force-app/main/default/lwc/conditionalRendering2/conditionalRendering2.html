@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title = "Conditional Rendering 2 ">
+        <div class = "slds-var-m-around_medium">
+            <lightning-input
+             type="text" 
+             label="Enter the Country"
+             onchange = {changeHandler}>
+            </lightning-input>
+            <template lwc:if ={showContent}>
+                Hey, I live in United States!
+            </template>
+            <!-- <template lwc:if ={showContentTr}>
+                Hey, I live in Turkey!
+            </template>
+        -->
+        </div>
+    </lightning-card>
+</template>
