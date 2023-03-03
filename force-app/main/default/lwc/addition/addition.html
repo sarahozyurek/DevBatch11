@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title = "Addition">
+        <div class="slds-var-m-around_large">
+
+      <lightning-input
+        type="Number"
+        label="First Number"
+        value={num1}
+        onchange= {changeHandler}>
+     </lightning-input>
+        <br>
+
+        <lightning-input
+            type="Number"
+            label="Second Number"
+            value={num2}
+            onchange= {changeHandler}>
+            </lightning-input>
+            <br>
+
+            <lightning-button
+                variant="brand"     
+                label="Add"
+                title="Add" 
+                onclick={changeHandler} class="slds-var-m-top_large">
+          </lightning-button>
+
+           <div class="slds-var-m-top_large">
+            The addition of {num1} and {num2} is {result}!
+           </div>
+
+        </div>
+
+    </lightning-card>
+    
+</template>

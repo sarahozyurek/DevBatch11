@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Get Picklist Values - Opportunity">
+        <div class="slds-var-m-around_medium">
+            <lightning-combobox label="Select the Stage" onchange={changeHandler} options={stageOptions}>
+            </lightning-combobox>
+
+            <lightning-combobox label="Select the Lead source" onchange={changeHandler} options={leadOptions}>
+            </lightning-combobox>
+
+            <template lwc:if={isSelectedStage}>
+                <div class="slds-var-p-top_small">
+
+                   <b>Selected Stage:</b>  {selectedStage}
+
+                </div>
+            </template>
+
+            <template lwc:if={isSelectedLeadSource}>
+                <div class="slds-var-p-top_small">
+
+                    <b>Selected Lead Source:</b> {selectedLeadSource}
+
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

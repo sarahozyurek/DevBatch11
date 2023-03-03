@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Contact Record View Form">
+        <div class="slds-var-m-around_small">
+            <lightning-record-view-form object-api-name={objectApiName} record-id={recordId}>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_2-of-3">
+                        <lightning-output-field field-name={fields.firstName}></lightning-output-field>
+
+                        <lightning-output-field field-name={fields.lastName}></lightning-output-field>
+
+                    </div>
+                    
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-output-field field-name={fields.leadSource}></lightning-output-field>
+                        <lightning-output-field field-name={fields.title}></lightning-output-field>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+        </div>
+    </lightning-card>
+
+</template>

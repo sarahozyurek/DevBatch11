@@ -1,11 +1,11 @@
 <template>
-        <lightning-card  title=" First Component">
-            <div class="slds-var-m-around_medium">
-                Hello World! <br/>
-                My name is {fullName}<br/>
-              The age I feel is :) {age}<br/>
-                I live in {location.city} <br/>{location.country}
-            </div>
-    
-        </lightning-card>
+  <lightning-card title="HelloWorld" icon-name="custom:custom14">
+    <div class="slds-var-m-around_medium">
+      <p>Hello, {greeting}!</p>
+      <lightning-input
+       label="Name" 
+       value={greeting}
+        onchange={changeHandler}></lightning-input>
+    </div>
+  </lightning-card>
 </template>

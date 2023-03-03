@@ -1,16 +1,16 @@
 import { LightningElement } from 'lwc';
-
 export default class HelloWorld extends LightningElement {
-    fullName = "Sarah";
+firstName;
+lastName;
 
-    age = 18;
-    location = {
-        city : "Dallas",
-        country: "United States"
-    };
-
-sum(a,b){
-return  a+b;
+firstNameHandler(event){
+this.firstName = event.target.value;
 }
 
+lastNameHandler(event){
+    this.lastName = event.target.value;
+}
+get fullName(){
+    return '$(this.firstName) $(this.lastName)';
+}
 }

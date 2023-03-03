@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="Record Edit Form Account" icon-name="standard:account">
+        <div class="slds-var-m-around_small">
+
+            <lightning-record-edit-form
+             object-api-name={objectApiName}
+              record-id={recordId} 
+              onsuccess={successHandler}
+            onerror={errorHandler}>
+                <div>
+                    <lightning-output-field field-name={fields.name}>
+                    </lightning-output-field>
+                    <lightning-input-field field-name={fields.rating} onchange={changeHandler}>
+                    </lightning-input-field>
+
+                    <template lwc:if={isIndustry}>
+                        <lightning-input-field field-name={fields.industry}>
+                        </lightning-input-field>
+
+                    </template>
+                    <template lwc:if={isFax}>
+                        <lightning-input-field field-name={fields.fax}>
+                        </lightning-input-field>
+                    </template>
+                    <template lwc:if={isOwnership}>
+                        <lightning-input-field field-name={fields.ownership}>
+                        </lightning-input-field>
+                    </template>
+                </div>
+                <div>
+                    <lightning-button variant="brand" label="Save" type="submit">
+                    </lightning-button>
+                    <lightning-button variant="neutral" label="Cancel" type="reset" class="slds-var-m-left_small">
+                    </lightning-button>
+                </div>
+
+            </lightning-record-edit-form>
+        </div>
+
+    </lightning-card>
+</template>
+
+<!---Bir Account recordu update edilirken 
+Rating fieldı "Hot" ise Industry fieldı görünsün,
+Rating fieldı "Cold" ise Ownership fieldı görünsün
+Rating fieldı "Warm" ise Fax fieldı görünsün istiyoruz-->

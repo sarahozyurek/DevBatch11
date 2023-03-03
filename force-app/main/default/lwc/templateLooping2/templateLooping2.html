@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title = "Template Looping 2">
+        <div class="slds-var-m-around_medium">
+            <template for:each={accounts} for:item = "record">
+                <div key = {record.Id} class = "slds-var-m-top_small">
+                    <li>
+                         <ol>
+                            <strong>{record.Name}</strong> <br/>
+                            {record.Industry}, {record.Rating} 
+                        </ol>
+                    </li>
+                
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

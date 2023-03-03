@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Record View Form - Contact" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+            <lightning-record-view-form object-api-name={objectName} record-id={recordId} columns="2">
+
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <lightning-output-field field-name={fields.name}>
+                        </lightning-output-field>
+                        <lightning-output-field field-name={fields.accountName}>
+                        </lightning-output-field>
+
+                    </div>
+                    <div class="slds-col">
+
+                        <lightning-output-field field-name={fields.phone}>
+                        </lightning-output-field>
+                        <lightning-output-field field-name={fields.leadsource}>
+                        </lightning-output-field>
+                        <lightning-output-field field-name={fields.department}>
+                        </lightning-output-field>
+                        <lightning-output-field field-name={fields.birthdate}>
+                        </lightning-output-field>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+        </div>
+    </lightning-card>
+</template>

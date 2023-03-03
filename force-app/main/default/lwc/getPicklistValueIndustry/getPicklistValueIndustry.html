@@ -1,0 +1,23 @@
+<template> 
+    <lightning-card 
+    title="Get Picklist Values - Industry"> 
+     <div style="background-color: rgba(22, 227, 114, 0.791)"
+     class="slds-var-m-around_medium"> 
+
+    <lightning-combobox 
+    label="Select the industry" 
+    options={industryOptions}
+    onchange ={changeHandler} > 
+    </lightning-combobox> 
+
+    <template lwc:if = {isSelected}>
+        <div      class="slds-var-m-around_medium">
+            Current Industry is = {selectedIndustry}
+        </div>
+
+    </template>
+
+
+    </div> 
+    </lightning-card> 
+   </template> 
