@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Display Contact Adress" icon-name="standard:contact">
+        <template lwc:if={isData}>
+            <div class="slds-var-m-around_medium">
+                <lightning-formatted-address
+                    street={street}
+                    city={city}
+                    country={country}
+                    province={state}
+                    postal-code={postal}
+                    show-static-map>
+                </lightning-formatted-address>
+            </div>
+        </template>
+    </lightning-card>
+</template>

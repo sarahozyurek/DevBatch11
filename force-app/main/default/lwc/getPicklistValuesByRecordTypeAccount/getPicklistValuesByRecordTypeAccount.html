@@ -1,20 +1,24 @@
-<template> 
-    <lightning-card title="Get Picklist Values by Record Type- Account">  
-    <div class="slds-var-m-around_medium"> 
+<template>
+    <lightning-card title="Get Picklist Values by Record Type- Account">
+        <div class="slds-var-m-around_medium">
 
-    <lightning-combobox 
-    label="Select the Type" 
-    name = "Type"
-    options={typeOptions}> 
-    </lightning-combobox> 
-    
+            <lightning-combobox label="Select the Type" name="Type" options={typeOptions} onchange={changeHandler}>
+            </lightning-combobox>
 
-    <lightning-combobox 
-    label="Select the Rating" 
-    name = "Rating"
-    options={ratingOptions}> 
-    </lightning-combobox> 
-   
-    </div> 
-    </lightning-card> 
-   </template> 
+
+            <lightning-combobox label="Select the Rating" name="Rating" options={ratingOptions}
+                onchange={changeHandler}>
+            </lightning-combobox>
+
+
+
+            <template lwc:if={isSelected}>
+                <div class="slds-var-m-around_medium">
+                  <b>  Selected Type =</b> {selectedType} <br>
+                  <b>  Selected Rating =</b> {selectedRating} <br>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
