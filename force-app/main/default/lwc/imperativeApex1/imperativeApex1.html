@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Get Matching Opps" icon-name="standard:opportunity">
+
+        <div class="slds-var-m-around_medium">
+            <lightning-combobox
+             label="Select a Stage to see the matching records" 
+             options={stageOptions}
+            onchange={changeHandler}>
+            </lightning-combobox>
+        
+            <div class="slds-var-m-top_small">
+                <template lwc:if={opps}>
+                    <lightning-datatable 
+                    key-field="Id"
+                     data={opps} 
+                     columns={columns}>
+                    </lightning-datatable>
+                </template>
+
+                <template lwc:if={error}>
+                    {error}
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

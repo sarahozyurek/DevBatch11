@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Get picklist values by Stage Name">
+        <div class=" slds-var-m-around_medium">
+            <lightning-combobox 
+            label="Select the Stage" 
+            options={oppOptions}
+             onchange={changeHandler}>
+            </lightning-combobox>
+
+            <div class=" slds-var-m-around_medium">
+                <template lwc:if = {total}>
+                <strong>Total amount : {total}</strong>
+                </template>
+
+                <template lwc:elseif = {error}>
+                    <strong>{error}</strong>
+                    </template>
+
+            </div>
+        </div>
+    </lightning-card>
+
+</template>

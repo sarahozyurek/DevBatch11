@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title = "Query Selector"  >
+        <div class = "slds-var-m-around_medium">
+            <h1>FRUITS</h1>
+
+            <p>Fruits are a rich source of vitamins, minerals, fibres and proteins. We should eat fresh fruits to keep ourselves healthy. But we should not eat cut fruits at the market as they are very unhygienic and can make us ill..</p>
+            <template
+             for:each={fruits}
+             for:item = "fruit">
+                <div key = {fruit} class = "child">
+                    {fruit}
+                </div>
+            </template>
+
+            <lightning-button
+             variant="brand" 
+             label="Click me" 
+             title="Primary action" 
+             onclick={clickHandler} class="slds-align_absolute-center" > </lightning-button>
+
+
+</div> 
+    </lightning-card>
+    
+</template>

@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title="Search Lead" icon-name="standard:lead">
+        <div class="slds-var-m-around_medium">
+            <lightning-button 
+                variant="brand" 
+                label="Search by Name"  
+                onclick={handleClick} 
+                class="slds-m-left_x-small">
+            </lightning-button>
+            <lightning-button 
+                variant="success" 
+                label="Search by Industry" 
+                onclick={handleClick} 
+                class="slds-m-left_x-small">
+            </lightning-button>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={isName}>
+                <lightning-input
+                    type="search"
+                    label="Enter Search Word"
+                    onchange={changeHandler}>
+                </lightning-input>
+                <div class="slds-var-m-around_medium">
+                    <template lwc:if={leads}>
+                        <template for:each={leads} for:item="lead">
+                            <div key={lead.id} class="slds-box slds-var-m-bottom_small">
+                                <strong>{lead.FirstName} {lead.LastName}</strong><br/>
+                                {lead.Company}<br/>
+                                {lead.Industry}<br/>
+                                {lead.LeadSource}
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={isIndustry}>
+                <lightning-combobox
+                    label="Enter Search Industry"
+                    options={industryOptions}
+                    onchange={changeHandler}>
+                </lightning-combobox>
+                <div class="slds-var-m-around_medium">
+                    <template lwc:if={leads}>
+                        <template for:each={leads} for:item="lead">
+                            <div key={lead.id} class="slds-box slds-var-m-bottom_small">
+                                <strong>{lead.FirstName} {lead.LastName}</strong><br/>
+                                {lead.Company}<br/>
+                                {lead.Industry}<br/>
+                                {lead.LeadSource}
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

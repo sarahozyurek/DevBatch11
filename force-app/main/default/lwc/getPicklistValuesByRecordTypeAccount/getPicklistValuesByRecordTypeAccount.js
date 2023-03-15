@@ -1,4 +1,4 @@
-import { getObjectInfo, getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
+getimport { getObjectInfo, getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
 import { LightningElement, wire } from 'lwc';
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 export default class GetPickListValuesByRecordTypeAccount extends LightningElement {
